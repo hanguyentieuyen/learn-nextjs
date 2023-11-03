@@ -1,0 +1,45 @@
+Structure folder:
+/app: chứa tất cả routes, components và logic trong ứng dụng
+/app/lib: Chứa các hàm được sử dụng trong ứng dụng của bạn, 
+chẳng hạn như các hàm tiện ích có thể tái sử dụng và các hàm fetch data
+/app/ui: Chứa tất cả các thành phần giao diện người dùng cho ứng dụng của bạn, chẳng hạn như thẻ, bảng và biểu mẫu.
+/public: Chứa tất cả nội dung tĩnh cho ứng dụng của bạn, chẳng hạn như hình ảnh.
+/scripts/: Chứa một tệp mà bạn sẽ sử dụng để ghi vào database
+
+import global.css vào file layout để apply css cho toàn bộ page
+tạo module.css và import vào file tsx để sử dụng, apply css cho từng component tránh bị conflict.
+
+thư viện clsx dùng để apply css theo điều kiện bằng cách toggle className, dùng trực tiếp trong tsx
+
+Component <Image/> lợi ích: resizing hình ảnh trên thiết bị màn nhỏ, lazy load ảnh,
+ngăn chặn tự động thay đổi bố cục khi tải ảnh.
+
+Cách tạo trang: trong /app tạo folder a / tạo folder con x (nested page), trong folder tạo file page.tsx =>
+tự động tạo url theo folder x đến page.tsx. Lưu ý phải đặt đúng tên file = page.tsx để tạo dc page.
+Layout: trong folder a tạo file layout, layout này sẽ apply cho tất cả folder con (page con) của folder a
+Navigate giữa các page bằng <Link/>
+
+usePathname(): checking active link
+
+Trên môi trường production, nếu <Link/> component xuất hiện trên browser's viewport, nextjs sẽ tự động
+prefetch code trước của link route đó vào trong background. Khi user click link, code của link route đã dc
+load trong background sẽ dc tải lên gần như ngay lập tức.
+
+code-splits: code dc tách theo route, trong trường hợp 1 page lỗi thì các page khác chạy bình thường
+vì các page code tách biệt nhau.
+
+Revalidating data: xóa data cache và re-fetching lấy data mới nhất.
+có hai cách xác thực data: 
+ -Time-base revalidation: xác thực sau 1 khoảng thời gian nhất định
+ -On-demand revalidation: xác thực thủ công dựa trên event
+
+Client component: thường gọi chung là component-function nhận vào các tham số props và trả về react
+element jsx.
+Server component? render ở phía server trước khi gửi về cho client (browser)
+lợi ích khi dùng: giảm nhẹ size source code khi có những thư viện chỉ dùng ở server sẽ ko cần tải về
+phía client; server component tự động chia mã nguồn thành các phần nhỏ và client chỉ cần load những
+phần cần thiết 
+
+
+
+
