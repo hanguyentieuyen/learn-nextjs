@@ -3,9 +3,17 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function SinglePost({ params }) {
-    const [post, setPost] = useState(null)
-    const fetchPost = async(id: number) => {
+interface Post {
+    title: string,
+    tags: string[],
+    body: string
+}
+interface Params {
+    id: string
+}
+export default function SinglePost(params: Params) {
+    const [post, setPost] = useState<Post | null>(null)
+    const fetchPost = async(id: string) => {
         const res = await fetch(`http://localhost:3000/api/posts/${id}`);
         const {post} = await res.json();
     
