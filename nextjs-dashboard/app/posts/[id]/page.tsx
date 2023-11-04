@@ -14,7 +14,7 @@ interface Params {
 export default function SinglePost({ params }: { params: Params }) {
     const [post, setPost] = useState<Post | null>(null)
     const fetchPost = async(id: string) => {
-        const res = await fetch(`http://localhost:3000/api/posts/${id}`);
+        const res = await fetch(`${process.env.localhost}/api/posts/${id}`);
         const {post} = await res.json();
     
         post && setPost(post);

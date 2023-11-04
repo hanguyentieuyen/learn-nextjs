@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default async function PostsPage() {
-    const res = await fetch('http://localhost:3000/api/posts');
+    const res = await fetch(`${process.env.localhost}/api/posts`);
     const { posts } = await res.json();
   
     return (
