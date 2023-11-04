@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function SinglePost({ params }) {
     const [post, setPost] = useState(null)
-    const fetchPost = async(id) => {
+    const fetchPost = async(id: number) => {
         const res = await fetch(`http://localhost:3000/api/posts/${id}`);
         const {post} = await res.json();
     
@@ -14,7 +14,7 @@ export default function SinglePost({ params }) {
 
     useEffect(() => {
         fetchPost(params.id)
-    }, [])
+    }, [params.id])
     return (
         <div style={{ paddingTop: '20px', paddingLeft: '20px' }}>
             <Link href='/posts'>Back to home</Link>
