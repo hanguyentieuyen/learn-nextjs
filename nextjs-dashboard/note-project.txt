@@ -14,7 +14,7 @@ thư viện clsx dùng để apply css theo điều kiện bằng cách toggle c
 Component <Image/> lợi ích: resizing hình ảnh trên thiết bị màn nhỏ, lazy load ảnh,
 ngăn chặn tự động thay đổi bố cục khi tải ảnh.
 
-Cách tạo trang: trong /app tạo folder a / tạo folder con x (nested page), trong folder tạo file page.tsx =>
+Cách tạo trang theo file based routing : trong /app tạo folder a / tạo folder con x (nested page), trong folder tạo file page.tsx =>
 tự động tạo url theo folder x đến page.tsx. Lưu ý phải đặt đúng tên file = page.tsx để tạo dc page.
 Layout: trong folder a tạo file layout, layout này sẽ apply cho tất cả folder con (page con) của folder a
 Navigate giữa các page bằng <Link/>
@@ -38,8 +38,18 @@ element jsx.
 Server component? render ở phía server trước khi gửi về cho client (browser)
 lợi ích khi dùng: giảm nhẹ size source code khi có những thư viện chỉ dùng ở server sẽ ko cần tải về
 phía client; server component tự động chia mã nguồn thành các phần nhỏ và client chỉ cần load những
-phần cần thiết 
+phần cần thiết. 
+SSR: còn được gọi là dynamic render, có thể render HTML trc mà ko cần Javascript
 
+Pre-rendering: có 2 hình thức server side rendering và static generation
+Static generation: HTML sẽ dc generated 1 lần trong quá trình build-time (build app lên môi trường production),
+use sẽ sử dụng lại cho mỗi request, vậy kiểu rendering này thường sử dụng cho content ít có sự thay đổi.
+SSR: HTML sẽ dc generated mỗi khi có page request
 
+Nextjs cho phép mỗi trang chọn cách pre-rendering khác nhau vd: page A: static, page B: SSR
 
+getStaticProps: export hàm async có tên getStaticProps từ 1 page,
+chạy tại thời điểm build time cho production và bên trong hàm có thể fetch external data và return ra như props cho page.
 
+getServerSideProps: export một hàm có tên getServerSideProps (SSR) từ một page, nextjs sẽ pre-rendering page này theo mỗi yêu cầu 
+bằng cách sử dụng dữ liệu do getServerSideProps trả về.
