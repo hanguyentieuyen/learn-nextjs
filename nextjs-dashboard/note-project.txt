@@ -53,3 +53,5 @@ chạy tại thời điểm build time cho production và bên trong hàm có th
 
 getServerSideProps: export một hàm có tên getServerSideProps (SSR) từ một page, nextjs sẽ pre-rendering page này theo mỗi yêu cầu 
 bằng cách sử dụng dữ liệu do getServerSideProps trả về.
+
+Hai hàm trên đã bị thay thế từ version nextjs 13, fetch data từ trong app/api/route. Nextjs 13 dc migrate từ page/router sang app router
