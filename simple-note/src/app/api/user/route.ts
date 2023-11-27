@@ -1,6 +1,7 @@
 // Create register user api
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
+import {hash} from "bcrypt"
 
 export async function POST(req: Response) {
     try {
@@ -20,15 +21,18 @@ export async function POST(req: Response) {
         }
 
         // create user
+        const hashPassword = await hash(password, 10)
         const newUser = await db.user.create({
             data: {
                 username,
                 email,
-                password
+                password: hashPassword
             }
         })
-        return NextResponse.json(newUser, {status: 200})
+
+        const {password: newUserPassword, ...rest} = newUser
+        return NextResponse.json({user: rest, message: "User is created successfully"}, {status: 201})
     } catch (error) {
-        return NextResponse.json({ message: 'canot create user' })
+        return NextResponse.json({ message: 'can not create user' }, {status: 500})
     }
 }
