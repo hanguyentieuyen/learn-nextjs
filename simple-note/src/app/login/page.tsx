@@ -1,6 +1,7 @@
 import SignInForm from '@/components/form/SignInForm';
+import { FC } from "react"
 
-const page = () => {
+const LoginPage: FC = async () => {
   return (
     <div className='w-full'>
       <SignInForm />
@@ -8,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage
