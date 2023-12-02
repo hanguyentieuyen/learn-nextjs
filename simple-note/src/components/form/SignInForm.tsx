@@ -40,7 +40,8 @@ const SignInForm = () => {
     const loginData = await signIn('credentials', {
       email: values.email,
       password: values.password,
-      redirect: false
+      redirect: true,
+      callbackUrl: '/admin'
     })
     if(loginData?.error){
       console.log(loginData)
