@@ -1,5 +1,5 @@
 import BackButton from "@/components/BackButton"
-import ButtonAction from "@/components/ButtonAction"
+import BlogActionBtn from "@/components/BlogActionBtn"
 import { db } from "@/lib/db"
 import { FC } from "react"
 
@@ -29,7 +29,7 @@ const NoteDetailPage: FC<NoteDetailProps> = async ({params}) => {
             <BackButton/>
             <div className="mb-8">
                 <h2 className="text-2xl font-bold my-4">{note?.title}</h2>
-                <ButtonAction id={params.id} />
+                <BlogActionBtn id={params.id} />
             </div>
             <div className="badge badge-primary">{note?.tag.name}</div>
             <p className="text-slate-700">{note?.content}</p>

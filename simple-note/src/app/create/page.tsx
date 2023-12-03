@@ -1,6 +1,6 @@
 'use client'
 import BackButton from "@/components/BackButton"
-import Form from "@/components/Form"
+import BlogForm from "@/components/form/BlogForm"
 import { FormNote } from "@/types"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
@@ -30,7 +30,7 @@ const CreatePage = () => {
         <div>
             <BackButton/>
             <h1 className="text-2xl my-4 font-bold text-center">Add new note</h1>
-            <Form isLoadingSubmit={isLoadingSubmit} onSubmit={handleCreateNote} isEdit={false} />
+            <BlogForm isLoadingSubmit={isLoadingSubmit} onSubmit={handleCreateNote} isEdit={false} />
         </div>
     )
 }

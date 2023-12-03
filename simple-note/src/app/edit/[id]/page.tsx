@@ -1,6 +1,6 @@
 'use client'
 import BackButton from "@/components/BackButton"
-import Form from "@/components/Form"
+import BlogForm from "@/components/form/BlogForm"
 import { FormNote } from "@/types"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import axios from "axios"
@@ -52,7 +52,7 @@ const EditPage: FC<EditPageProps> = ({params}) => {
         <div>
             <BackButton/>
             <h1 className="text-2xl my-4 font-bold text-center">Edit note</h1>
-            <Form isLoadingSubmit={isLoadingSubmit} onSubmit={handleEditNote} initialValue={dataNote} isEdit={true} />
+            <BlogForm isLoadingSubmit={isLoadingSubmit} onSubmit={handleEditNote} initialValue={dataNote} isEdit={true} />
         </div>
     )
 }

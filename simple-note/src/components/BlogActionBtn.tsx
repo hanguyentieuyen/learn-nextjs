@@ -10,7 +10,7 @@ import { FC } from "react"
 interface ButtonActionProps {
     id: string
 }
-const ButtonAction: FC<ButtonActionProps> = ({id}) => {
+const BlogActionBtn: FC<ButtonActionProps> = ({id}) => {
     const router = useRouter()
     const {mutate: deleteNote, isPending} = useMutation({
         mutationFn: async () => {
@@ -41,4 +41,4 @@ const ButtonAction: FC<ButtonActionProps> = ({id}) => {
     )
 }
 
-export default ButtonAction
+export default BlogActionBtn

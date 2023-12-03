@@ -12,7 +12,7 @@ interface FormNoteProps {
     initialValue?: FormNote
     isLoadingSubmit: boolean
 }
-const Form: FC<FormNoteProps> = ({ onSubmit, isEdit, initialValue, isLoadingSubmit }) => {
+const BlogForm: FC<FormNoteProps> = ({ onSubmit, isEdit, initialValue, isLoadingSubmit }) => {
     const { register, handleSubmit } = useForm<FormNote>({
         defaultValues: initialValue
     })
@@ -49,4 +49,4 @@ const Form: FC<FormNoteProps> = ({ onSubmit, isEdit, initialValue, isLoadingSubm
     )
 }
 
-export default Form
+export default BlogForm
