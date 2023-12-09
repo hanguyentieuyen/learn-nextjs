@@ -1,40 +1,90 @@
 'use client'
 
 import { Fragment, useState } from "react"
-import { Stepper, Step, StepLabel, Button, Box } from "@mui/material"
+import { Stepper, Step, StepLabel, Button, Box, Typography } from "@mui/material"
 import AddressForm from "@/components/form/ShippingAddressForm"
 import PaymentForm from "@/components/form/PaymentForm"
+import { useFormContext } from "react-hook-form"
 
 const steps = ['Step 1', 'Step 2']
-export default function StepperForm() {
-    const [activeStep, setActiveStep] = useState<number>(0)
-    const handleBack = () => { setActiveStep((prev) => prev - 1) }
-    const handleNext = () => setActiveStep((prev) => prev + 1)
+const renderForm = (step: number, childForm: Object) => {
+    switch (step) {
+        case 0:
+            return <AddressForm />
+        case 1:
+            return <PaymentForm />
+        default:
+            return 'not valid step'
+    }
+}
 
-    const renderForm = (step: number) => {
-        switch (step) {
-            case 0:
-                return <AddressForm />
-            case 1:
-                return <PaymentForm />
-            default:
-                return null
+export default function StepperForm() {
+    const {watch} = useFormContext()
+    const [activeStep, setActiveStep] = useState<number>(0)
+    const [childForm, setChildForm] = useState({})
+    const formValue = watch()
+    
+    const handleNext = () => {
+        let canContinue = true;
+    
+        switch (activeStep) {
+          case 0:
+            setChildForm({ ...childForm, one: formValue });
+            canContinue = true;
+            break;
+          case 1:
+            setChildForm({ ...childForm, two: formValue });
+            canContinue = true;
+            break;
+          case 2:
+            setChildForm({ ...childForm, three: formValue });
+            canContinue = false
+            handleSubmit({ ...childForm, three: formValue });
+            break;
+          default:
+            return "not a valid step";
         }
+        if (canContinue) {
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
+      };
+    
+      const handleBack = () => {
+        if (activeStep > 0) {
+          setActiveStep((prevActiveStep) => prevActiveStep - 1);
+          switch (activeStep) {
+            case 1:
+                setChildForm({ ...childForm, two: formValue });
+              break;
+            case 2:
+                setChildForm({ ...childForm, three: formValue });
+              break;
+            default:
+              return "not a valid step";
+          }
+        }
+      };
+
+    const handleSubmit = (value: any) => {
+        console.log(value)
     }
     return (
         <Fragment>
-            <Box>
+            <Box sx={{ my: { xs: 3 }, p: { xs: 2 } }}>
+                <Typography component="h6" variant="h4" align="center">
+                    Checkout
+                </Typography>
                 <Stepper activeStep={activeStep}>
-                    {steps.map((step) => (
-                        <Step>
-                            <StepLabel>{step}</StepLabel>
+                    {steps.map((step, index) => (
+                        <Step key={index}>
+                            <StepLabel >{step}</StepLabel>
                         </Step>
 
                     ))}
 
                 </Stepper>
                 <div className="my-8">
-                    {renderForm(activeStep)}
+                    {renderForm(activeStep, childForm)}
 
                 </div>
                 <div className="flex justify-between">
