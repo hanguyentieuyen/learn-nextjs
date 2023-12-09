@@ -9,10 +9,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET, // require in product enviroment.
   session: {
     strategy: "jwt",
-    maxAge: 60
-  },
-  jwt: {
-    maxAge: 30
+    maxAge: 60 * 60 * 24
   },
   pages: {
     signIn: "/login",
@@ -54,7 +51,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({token, user}) {
+    jwt({token, user}) {
       if(user) {
         return {
           ...token,
@@ -63,7 +60,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-    async session({session, token}) {
+    session({session, token}) {
       return {
         ...session,
         user: {
