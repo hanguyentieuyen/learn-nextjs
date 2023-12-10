@@ -21,7 +21,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="given-name"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -39,7 +39,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="given-name"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -57,7 +57,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="given-address"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -75,7 +75,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="shipping address-level2"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -91,7 +91,7 @@ export default function AddressForm() {
                                 label="State/Province/Region"
                                 fullWidth
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -109,7 +109,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="shipping postal-code"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
@@ -127,7 +127,7 @@ export default function AddressForm() {
                                 fullWidth
                                 autoComplete="shipping country"
                                 variant="standard"
-                                value={value}
+                                value={value || ''}
                                 onChange={onChange}
                             />
                         )}
