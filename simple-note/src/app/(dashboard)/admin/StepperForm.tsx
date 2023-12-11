@@ -23,7 +23,7 @@ export default function StepperForm() {
     const [activeStep, setActiveStep] = useState<number>(0)
     const [childForm, setChildForm] = useState({})
     const formValue = watch()
-    
+    console.log(formValue)
     const handleNext = () => {
         let canContinue = true;
     
@@ -34,12 +34,8 @@ export default function StepperForm() {
             break;
           case 1:
             setChildForm({ ...childForm, two: formValue });
+            handleSubmit({ ...childForm, two: formValue });
             canContinue = true;
-            break;
-          case 2:
-            setChildForm({ ...childForm, three: formValue });
-            canContinue = false
-            handleSubmit({ ...childForm, three: formValue });
             break;
           default:
             return "not a valid step";
@@ -55,9 +51,6 @@ export default function StepperForm() {
           switch (activeStep) {
             case 1:
                 setChildForm({ ...childForm, two: formValue });
-              break;
-            case 2:
-                setChildForm({ ...childForm, three: formValue });
               break;
             default:
               return "not a valid step";
@@ -89,7 +82,7 @@ export default function StepperForm() {
                 </div>
                 <div className="flex justify-between">
                     <Button disabled={activeStep === 0} onClick={handleBack}>Back</Button>
-                    <Button onClick={handleNext} type="submit">Next</Button>
+                    <Button disabled={steps.length === activeStep} onClick={handleNext} type="submit">Next</Button>
                 </div>
             </Box>
         </Fragment>
